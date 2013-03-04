@@ -69,6 +69,11 @@ class ISO3166::Country
       Data.map &blk
     end
 
+    def expanded(&blk)
+      blk ||= Proc.new { |country ,data| [data['name'], country, data['alpha3']] }
+      Data.map &blk
+    end
+
     alias :countries :all
 
     def search(query)
